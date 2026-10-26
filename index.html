@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace Cooperativo do Azeite de Dendê - Costa do Dendê BA</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dende: {
+              primary: '#D94E1F',
+              dark: '#C0392B',
+              light: '#F87171',
+            },
+            ouro: {
+              DEFAULT: '#E67E22',
+              hover: '#D35400',
+              accent: '#F39C12',
+            },
+            palmeira: {
+              DEFAULT: '#27AE60',
+              dark: '#1E8449',
+              light: '#2ECC71',
+            },
+            terra: {
+              bg: '#FDF6EC',
+              card: '#FBF5ED',
+              dark: '#2C3E50',
+              sand: '#EFE3D3'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FDF6EC;
+      color: #2C3E50;
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F5EEF8;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #E67E22;
+      border-radius: 8px;
+    }
+    .glass-nav {
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-dende-primary selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT / CONTACT BAR -->
+  <div class="bg-gradient-to-r from-dende-dark via-dende-primary to-ouro text-white text-xs sm:text-sm py-2 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-4">
+        <span class="flex items-center gap-1.5"><i class="fa-solid me-1 fa-location-dot text-amber-300"></i> Costa do Dendê (Valença, Cairu, Nilo Peçanha, Taperoá, Camamu)</span>
+        <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-leaf text-green-300"></i> 100% Extrativismo Sustentável Ancestral</span>
+      </div>
+      <div class="flex items-center space-x-4 text-xs font-medium">
+        <a href="tel:75988060786" class="hover:text-amber-200 transition-colors flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-300"></i> (75) 988060786</a>
+        <a href="mailto:mikellydiasaraujo4@gmail.com" class="hover:text-amber-200 transition-colors flex items-center gap-1"><i class="fa-regular fa-envelope"></i> mikellydiasaraujo4@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-amber-200/50 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="#" onclick="showTab('catalog')" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-dende-primary to-ouro flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-droplet text-xl"></i>
+        </div>
+        <div>
+          <span class="font-serif font-bold text-lg sm:text-2xl text-dende-dark block leading-none">Dendê Ancestral</span>
+          <span class="text-[10px] sm:text-xs text-palmeira-dark font-semibold tracking-wider uppercase">Cooperativa da Costa do Dendê</span>
+        </div>
+      </a>
+
+      <!-- MAIN NAVIGATION LINKS -->
+      <nav class="hidden lg:flex items-center space-x-6 text-sm font-semibold text-slate-700">
+        <button onclick="showTab('catalog')" class="nav-btn hover:text-dende-primary transition-colors flex items-center gap-1.5" id="nav-catalog">
+          <i class="fa-solid fa-store text-ouro"></i> Catálogo
+        </button>
+        <button onclick="showTab('route')" class="nav-btn hover:text-dende-primary transition-colors flex items-center gap-1.5" id="nav-route">
+          <i class="fa-solid fa-route text-ouro"></i> Rota do Dendê
+        </button>
+        <button onclick="showTab('pairing')" class="nav-btn hover:text-dende-primary transition-colors flex items-center gap-1.5" id="nav-pairing">
+          <i class="fa-solid fa-utensils text-ouro"></i> Harmonização
+        </button>
+        <button onclick="openHowItWorksModal()" class="hover:text-dende-primary transition-colors flex items-center gap-1.5 text-palmeira-dark bg-palmeira/10 px-3 py-1.5 rounded-full border border-palmeira/20">
+          <i class="fa-solid fa-circle-question"></i> Como Funciona
+        </button>
+      </nav>
+
+      <!-- RIGHT USER & CART ACTION BUTTONS -->
+      <div class="flex items-center gap-3">
+        <!-- Dashboard Button (Only visible if logged in as Producer) -->
+        <button id="producer-dash-btn" onclick="showTab('producer-dashboard')" class="hidden bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-medium px-3 py-1.5 rounded-lg text-xs sm:text-sm flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-chart-line text-dende-primary"></i> <span class="hidden sm:inline">Painel</span> Produtor
+        </button>
+
+        <!-- User Auth Info / Button -->
+        <div id="user-nav-container">
+          <button onclick="openAuthModal()" class="bg-dende-primary hover:bg-dende-dark text-white px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition flex items-center gap-1.5">
+            <i class="fa-solid fa-user"></i> <span>Entrar / Cadastrar</span>
+          </button>
+        </div>
+
+        <!-- Cart Button Trigger -->
+        <button onclick="toggleCartDrawer()" class="relative bg-ouro hover:bg-ouro-hover text-white p-2.5 rounded-lg shadow-sm transition flex items-center justify-center">
+          <i class="fa-solid fa-basket-shopping text-base"></i>
+          <span id="cart-badge" class="absolute -top-2 -right-2 bg-dende-dark text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileMenu()" class="lg:hidden text-slate-700 p-2 hover:bg-amber-100 rounded-lg">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU DROPDOWN -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-amber-200/60 bg-terra-bg px-4 py-3 space-y-2 text-sm font-semibold">
+      <button onclick="showTab('catalog'); toggleMobileMenu()" class="block w-full text-left py-2 hover:text-dende-primary"><i class="fa-solid fa-store me-2 text-ouro"></i> Catálogo de Produtos</button>
+      <button onclick="showTab('route'); toggleMobileMenu()" class="block w-full text-left py-2 hover:text-dende-primary"><i class="fa-solid fa-route me-2 text-ouro"></i> Rota Ancestral do Dendê</button>
+      <button onclick="showTab('pairing'); toggleMobileMenu()" class="block w-full text-left py-2 hover:text-dende-primary"><i class="fa-solid fa-utensils me-2 text-ouro"></i> Harmonização Gastronômica</button>
+      <button onclick="openHowItWorksModal(); toggleMobileMenu()" class="block w-full text-left py-2 text-palmeira-dark"><i class="fa-solid fa-circle-question me-2"></i> Guia Passo a Passo</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER FOR DYNAMIC TABS -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- HERO / BANNER SECTION (Displayed on catalog tab) -->
+    <section id="hero-banner" class="mb-10 rounded-2xl bg-gradient-to-r from-dende-dark via-dende-primary to-ouro p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+      <div class="relative z-10 max-w-2xl">
+        <span class="inline-block bg-amber-400/20 backdrop-blur-md border border-amber-300/30 text-amber-100 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
+          <i class="fa-solid fa-award text-amber-300 me-1"></i> Tradição Extrativista da Bahia
+        </span>
+        <h1 class="font-serif text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+          O Verdadeiro Ouro Vermelho da Costa do Dendê
+        </h1>
+        <p class="text-amber-100 text-sm sm:text-base mb-6 leading-relaxed">
+          Compre azeites artesanais de acidez controlada, extraídos manualmente no pilão e na prensa tradicional diretamente das mãos das comunidades produtoras de Valença, Cairu, Nilo Peçanha e região.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#produtos" onclick="showTab('catalog')" class="bg-white text-dende-dark hover:bg-amber-50 font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-basket-shopping"></i> Ver Produtos Artesanais
+          </a>
+          <button onclick="openHowItWorksModal()" class="bg-palmeira hover:bg-palmeira-dark text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-store"></i> Quero Vender Meu Dendê
+          </button>
+        </div>
+      </div>
+      <!-- Background SVG Pattern Art -->
+      <div class="absolute right-0 bottom-0 opacity-15 pointer-events-none translate-x-10 translate-y-10">
+        <svg width="400" height="400" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M50 0 C20 30 0 50 0 75 C0 88.8 11.2 100 25 100 C38.8 100 50 88.8 50 75 C50 88.8 61.2 100 75 100 C88.8 100 100 88.8 100 75 C100 50 80 30 50 0 Z"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- TAB 1: PRODUCT CATALOG & SHOPPING -->
+    <section id="tab-catalog" class="tab-content space-y-8">
+      
+      <!-- CONTROLS & SEARCH BAR -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-4 rounded-xl border border-amber-200/80 shadow-sm" id="produtos">
+        <!-- Search Input -->
+        <div class="relative w-full md:w-96">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+          <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Buscar azeites, kits, pimentas..." class="w-full pl-10 pr-4 py-2 bg-terra-bg border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-dende-primary/50">
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+          <button onclick="setCategoryFilter('all')" class="cat-filter-btn active bg-dende-primary text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition" data-cat="all">Todos</button>
+          <button onclick="setCategoryFilter('azeites')" class="cat-filter-btn bg-amber-100 hover:bg-amber-200 text-amber-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" data-cat="azeites">Azeites Puros</button>
+          <button onclick="setCategoryFilter('kits')" class="cat-filter-btn bg-amber-100 hover:bg-amber-200 text-amber-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" data-cat="kits">Kits Baianos</button>
+          <button onclick="setCategoryFilter('derivados')" class="cat-filter-btn bg-amber-100 hover:bg-amber-200 text-amber-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition" data-cat="derivados">Derivados & Acompanhamentos</button>
+        </div>
+      </div>
+
+      <!-- PRODUCTS GRID CONTAINER -->
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Product Cards injected dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- TAB 2: PRODUCER DASHBOARD -->
+    <section id="tab-producer-dashboard" class="tab-content hidden space-y-8">
+      <div class="bg-amber-900 text-white p-6 rounded-2xl shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <span class="text-amber-300 text-xs font-bold tracking-wider uppercase"><i class="fa-solid fa-leaf me-1"></i> Espaço do Produtor da Costa do Dendê</span>
+          <h2 id="dash-producer-name" class="font-serif text-2xl sm:text-3xl font-bold">Painel de Gestão do Sítio</h2>
+          <p id="dash-producer-location" class="text-amber-200 text-sm mt-1"><i class="fa-solid fa-location-dot me-1"></i> Nilo Peçanha - BA</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="openAddProductModal()" class="bg-palmeira hover:bg-palmeira-dark text-white font-bold px-4 py-2.5 rounded-xl text-sm shadow transition flex items-center gap-2">
+            <i class="fa-solid fa-plus-circle"></i> Cadastrar Novo Produto
+          </button>
+        </div>
+      </div>
+
+      <!-- DASHBOARD METRICS SUMMARY -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-amber-200 shadow-sm flex items-center gap-4">
+          <div class="p-3 bg-amber-100 text-ouro rounded-xl text-2xl"><i class="fa-solid fa-sack-dollar"></i></div>
+          <div>
+            <span class="text-xs text-slate-500 font-medium">Vendas Totais</span>
+            <p id="dash-total-sales" class="text-xl font-bold text-slate-800">R$ 0,00</p>
+          </div>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-amber-200 shadow-sm flex items-center gap-4">
+          <div class="p-3 bg-green-100 text-palmeira rounded-xl text-2xl"><i class="fa-solid fa-box-open"></i></div>
+          <div>
+            <span class="text-xs text-slate-500 font-medium">Produtos no Catálogo</span>
+            <p id="dash-total-products" class="text-xl font-bold text-slate-800">0</p>
+          </div>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-amber-200 shadow-sm flex items-center gap-4">
+          <div class="p-3 bg-red-100 text-dende-primary rounded-xl text-2xl"><i class="fa-solid fa-truck-ramp-box"></i></div>
+          <div>
+            <span class="text-xs text-slate-500 font-medium">Pedidos Recebidos</span>
+            <p id="dash-total-orders" class="text-xl font-bold text-slate-800">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCER PRODUCTS MANAGEMENT TABLE -->
+      <div class="bg-white rounded-xl border border-amber-200/80 shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-amber-100 bg-amber-50/50 flex justify-between items-center">
+          <h3 class="font-bold text-slate-800"><i class="fa-solid fa-boxes-stacked text-dende-primary me-2"></i> Meus Produtos Cadastrados</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-slate-600">
+            <thead class="bg-slate-50 text-xs uppercase font-bold text-slate-500">
+              <tr>
+                <th class="p-3.5">Produto</th>
+                <th class="p-3.5">Categoria</th>
+                <th class="p-3.5">Preço Un.</th>
+                <th class="p-3.5">Acidez</th>
+                <th class="p-3.5">Estoque</th>
+                <th class="p-3.5 text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="dash-products-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ORDERS MANAGEMENT TABLE -->
+      <div class="bg-white rounded-xl border border-amber-200/80 shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-amber-100 bg-amber-50/50 flex justify-between items-center">
+          <h3 class="font-bold text-slate-800"><i class="fa-solid fa-receipt text-ouro me-2"></i> Pedidos para Separação / Envio</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-slate-600">
+            <thead class="bg-slate-50 text-xs uppercase font-bold text-slate-500">
+              <tr>
+                <th class="p-3.5">Cód. Pedido</th>
+                <th class="p-3.5">Cliente</th>
+                <th class="p-3.5">Itens</th>
+                <th class="p-3.5">Valor Total</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 text-right">Alterar Status</th>
+              </tr>
+            </thead>
+            <tbody id="dash-orders-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ANCESTRAL DENDE ROUTE -->
+    <section id="tab-route" class="tab-content hidden space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="text-dende-primary font-bold text-xs tracking-widest uppercase"><i class="fa-solid fa-tree me-1"></i> Tradição & Sabedoria Quilombola e Extrativista</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-dende-dark">Rota Ancestral da Extração do Dendê</h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+          Conheça o processo 100% artesanal, respeitoso com o meio ambiente e com os ciclos da natureza praticado no litoral sul da Bahia.
+        </p>
+      </div>    
+
+      <!-- 6 STEPS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm relative overflow-hidden group hover:border-dende-primary transition">
+          <div class="w-12 h-12 bg-amber-100 text-dende-primary font-bold rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-dende-primary group-hover:text-white transition">1</div>
+          <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">1. Colheita Sustentável</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Os cachos de dendê são colhidos manualmente pelos tiradores de dendê nas palmeiras nativas (Elaeis guineensis), respeitando o ponto exato de maturação dos frutos.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm relative overflow-hidden group hover:border-dende-primary transition">
+          <div class="w-12 h-12 bg-amber-100 text-dende-primary font-bold rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-dende-primary group-hover:text-white transition">2</div>
+          <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">2. Desgranagem e Cozimento</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Os frutos são debulhados dos cachos e levados a tachos de cobre ou ferro em fogo a lenha para cozimento a vapor, amolecendo a polpa valiosa.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm relative overflow-hidden group hover:border-dende-primary transition">
+          <div class="w-12 h-12 bg-amber-100 text-dende-primary font-bold rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-dende-primary group-hover:text-white transition">3</div>
+          <h3 class="font-serif font-bold text-lg text-slate-800 mb-2">3. Pilão e Pisa Tradicional</h3>
+          <p class="text-sm
